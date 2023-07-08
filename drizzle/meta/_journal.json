@@ -1,0 +1,48 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1688033898661,
+      "tag": "0000_cute_human_robot",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1688418064782,
+      "tag": "0001_dashing_sentinels",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1688418774603,
+      "tag": "0002_blue_lord_hawal",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1688469833976,
+      "tag": "0003_previous_donald_blake",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1688470191565,
+      "tag": "0004_dapper_leper_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1688470384689,
+      "tag": "0005_minor_master_mold",
+      "breakpoints": true
+    }
+  ]
+}
