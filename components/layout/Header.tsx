@@ -13,7 +13,7 @@ const Header = () => {
   console.log(theme)
   return (
     <div className='w-screen h-16'>
-      <div className='flex items-center h-full gap-4 mx-auto max-width padding-x'>
+      <div className='flex items-center h-full gap-8 mx-auto max-width padding-x'>
         <Link
           className='translate-y-0.5'
           href={"/"}

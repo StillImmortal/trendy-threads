@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import * as z from "zod"
@@ -17,6 +17,7 @@ import {
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { useSignUp } from '@clerk/nextjs'
+import OAuthSignUp from './OAuthSignUp'
 
 const formSchema = z.object({
   email: z.string().email("Invalid email"),
@@ -29,11 +30,13 @@ const codeSchema = z.object({
   code: z.string()
 })
 
+
 const SignUpForm = () => {
   const router = useRouter()
   const { isLoaded, signUp, setActive } = useSignUp()
   const [pendingVerification, setPendingVerification] = useState<boolean>(false)
 
+  // React-Hook-Form with Zod initialization for general form
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,6 +45,7 @@ const SignUpForm = () => {
     }
   })
 
+  // React-Hook-Form with Zod initialization for code
   const code = useForm<z.infer<typeof codeSchema>>({
     resolver: zodResolver(codeSchema),
     defaultValues: {
@@ -49,6 +53,7 @@ const SignUpForm = () => {
     }
   })
 
+  // Submitting an authorization
   const onSubmit = async ({ email, password }: z.infer<typeof formSchema>) => {
     if (!isLoaded) return
     try {
@@ -65,6 +70,7 @@ const SignUpForm = () => {
     }
   }
 
+  // Verifying a code from email
   const handleVerify = async ({ code } : z.infer<typeof codeSchema>) => {
     if (!isLoaded) return
 
@@ -92,6 +98,7 @@ const SignUpForm = () => {
             onSubmit={form.handleSubmit(onSubmit)}
             className='space-y-2'
           >
+            <OAuthSignUp />
             <FormField 
               control={form.control}
               name="email"
