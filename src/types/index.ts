@@ -34,9 +34,16 @@ export interface CartLineItem
     | 'id'
     | 'brand'
     | 'name'
+    | 'images'
     | 'category'
     | 'subCategory'
     | 'price'
   > {
   quantity?: number
+}
+
+export interface StoredFile {
+  id: string,
+  name: string,
+  url: string
 }

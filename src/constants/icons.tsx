@@ -1,4 +1,9 @@
 import {
+  Check,
+  Trash,
+  Plus,
+  Minus,
+  Image,
   ShoppingCart,
   Search,
   ChevronLeft,
@@ -15,6 +20,11 @@ import {
 //viewBox="0 0 63.86861313868613 70.2407231880674"
 
 export const Icons = {
+  check: Check,
+  trash: Trash,
+  add: Plus,
+  remove: Minus,
+  imagePlaceholder: Image,
   cart: ShoppingCart,
   search: Search,
   chevronLeft: ChevronLeft,

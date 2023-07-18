@@ -14,8 +14,9 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Icons } from "@/constants/icons"
 import { CartSheet, MainNav, MobileNav, SearchCombobox } from "@/components/layout"
+import { Icons } from "@/constants/icons"
+import { Suspense } from "react"
 
 interface SiteHeaderProps {
   user: User | null

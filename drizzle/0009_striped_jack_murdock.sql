@@ -1,0 +1,1 @@
+ALTER TABLE `products` MODIFY COLUMN `brand` varchar(127) NOT NULL DEFAULT 'custom';

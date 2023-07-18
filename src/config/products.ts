@@ -3,14 +3,8 @@ import { type Product } from "@/db/schema"
 export const productCategories = [
   {
     title: "clothing",
-    image: "",
+    image: "/images/categories/category-clothing.jpg",
     subCategories: [
-      {
-        title: "All",
-        description: "All clothing.",
-        image: "",
-        slug: "all"
-      },
       {
         title: "Shirts & T-Shirts",
         description: "Elegant tops for every occasion. From formal shirts to casual tees.",
@@ -45,14 +39,8 @@ export const productCategories = [
   },
   {
     title: "shoes",
-    image: "",
+    image: "/images/categories/category-shoes.jpg",
     subCategories: [
-      {
-        title: "All",
-        description: "All shoes.",
-        image: "",
-        slug: "all"
-      },
       {
         title: "Boots",
         description: "Stylish and versatile footwear for any occasion.",
@@ -81,14 +69,8 @@ export const productCategories = [
   },
   {
     title: "accessories",
-    image: "",
+    image: "/images/categories/category-accessories.jpg",
     subCategories: [
-      {
-        title: "All",
-        description: "All accessories.",
-        image: "",
-        slug: "all"
-      },
       {
         title: "Sunglasses",
         description: "Protect your eyes in style with our trendy sunglasses.",

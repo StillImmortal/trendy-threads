@@ -1,16 +1,19 @@
 "use client"
 
 import React from 'react'
-import { Toaster, toast } from 'sonner'
-import { Button } from '@/components/ui/button'
+import { Categories, CreateStoreBanner, FeaturedProducts, FeaturedStores, Hero, RandomSubCategories } from '@/components/lobby'
+import { Container } from '@/components/custom'
 
 const page = () => {
   return (
-    <div>
-      <Button onClick={() => toast.message("Hello")}>
-        Toast
-      </Button>
-    </div>
+    <Container as="div" className='gap-12'>
+      <Hero />
+      <Categories />
+      <CreateStoreBanner />
+      <FeaturedProducts />
+      <FeaturedStores />
+      <RandomSubCategories />
+    </Container>
   )
 }
 

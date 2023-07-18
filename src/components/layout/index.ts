@@ -6,6 +6,7 @@ import SidebarNav from "./SidebarNav"
 import ThemeToggler from "./ThemeToggler"
 import SearchCombobox from "./SearchCombobox"
 import CartSheet from "./CartSheet"
+import UpdateCartLineItem from "./UpdateCartLineItem"
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   SearchCombobox,
   ThemeToggler,
   CartSheet,
+  UpdateCartLineItem
 }

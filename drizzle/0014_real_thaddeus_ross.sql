@@ -1,0 +1,1 @@
+DROP INDEX `slug_idx` ON `stores`;
