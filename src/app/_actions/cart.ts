@@ -1,6 +1,5 @@
 "use server"
 
-import { revalidatePath } from "next/cache"
 import { cookies } from "next/headers"
 import { db } from "@/db"
 import { carts, products } from "@/db/schema"
@@ -89,7 +88,6 @@ export const addToCart = async (input: z.infer<typeof cartItemSchema>) => {
     // Note: .set() is only available in a Server Action or Route Handler
     cookieStore.set("cartId", String(cart.insertId))
 
-    revalidatePath("/")
     return
   }
 
@@ -122,8 +120,6 @@ export const addToCart = async (input: z.infer<typeof cartItemSchema>) => {
       items: cart.items
     })
     .where(eq(carts.id, Number(cartId)))
-  
-  revalidatePath("/")
 }
 
 export const updateCartItem = async (input: z.infer<typeof cartItemSchema>) => {
@@ -165,8 +161,6 @@ export const updateCartItem = async (input: z.infer<typeof cartItemSchema>) => {
       items: cart.items
     })
     .where(eq(carts.id, Number(cartId)))
-
-  revalidatePath("/")
 }
 
 export const deleteCart = async () => {
@@ -208,8 +202,6 @@ export const deleteCartItem = async (input: z.infer<typeof deleteCartItemSchema>
       items: cart.items,
     })
     .where(eq(carts.id, Number(cartId)))
-
-  revalidatePath("/")
 }
 
 export const deleteCartItems = async (input: z.infer<typeof deleteCartItemsSchema>) => {
@@ -237,6 +229,4 @@ export const deleteCartItems = async (input: z.infer<typeof deleteCartItemsSchem
       items: cart.items,
     })
     .where(eq(carts.id, Number(cartId)))
-
-  revalidatePath("/")
 }

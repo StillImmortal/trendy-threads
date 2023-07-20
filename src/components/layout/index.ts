@@ -7,6 +7,7 @@ import ThemeToggler from "./ThemeToggler"
 import SearchCombobox from "./SearchCombobox"
 import CartSheet from "./CartSheet"
 import UpdateCartLineItem from "./UpdateCartLineItem"
+import SectionHeader from "./SectionHeader"
 
 export {
   Header,
@@ -17,5 +18,6 @@ export {
   SearchCombobox,
   ThemeToggler,
   CartSheet,
-  UpdateCartLineItem
+  UpdateCartLineItem,
+  SectionHeader,
 }

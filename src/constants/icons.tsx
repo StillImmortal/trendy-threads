@@ -1,4 +1,5 @@
 import {
+  Terminal,
   Check,
   Trash,
   Plus,
@@ -20,6 +21,7 @@ import {
 //viewBox="0 0 63.86861313868613 70.2407231880674"
 
 export const Icons = {
+  terminal: Terminal,
   check: Check,
   trash: Trash,
   add: Plus,

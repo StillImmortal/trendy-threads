@@ -1,7 +1,8 @@
 import Link from 'next/link'
 
-import { Badge } from '../ui/badge'
+import { badgeVariants } from '../ui/badge'
 import { productCategories } from '@/config'
+import { cn } from '@/lib/utils'
 
 const RandomSubCategories = () => {
   return (
@@ -16,10 +17,14 @@ const RandomSubCategories = () => {
         <Link
           key={subCategory.slug}
           href={`/categories/${String(productCategories[0]?.title)}/${subCategory.slug}`}
+          className={cn(
+            badgeVariants({
+              variant: "secondary",
+              className: "px-3 py-1 rounded"
+            })
+          )}
         >
-          <Badge variant="secondary" className="px-3 py-1 rounded">
-            {subCategory.title}
-          </Badge>
+          {subCategory.title}
           <span className="sr-only">{subCategory.title}</span>
         </Link>
       ))}

@@ -20,7 +20,7 @@ const Categories = () => {
           Explore our categories and find the best products for you
         </Balance>
       </div>
-      <div className='grid mx-auto max-w-[80rem] grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3'>
+      <div className='grid grid-cols-1 gap-12 mx-auto sm:grid-cols-2 md:grid-cols-3'>
         {productCategories.map((category) => (
           <Link
             key={category.title}
