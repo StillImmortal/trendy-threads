@@ -2,6 +2,7 @@
 
 import { db } from "@/db"
 import { Store, products, stores } from "@/db/schema"
+import { User } from "@clerk/nextjs/dist/types/server"
 import { desc, eq, sql } from "drizzle-orm"
 
 type FeaturedStore = {
@@ -26,4 +27,18 @@ export const getFeaturedStores = async (): Promise<FeaturedStore[]> => {
       .groupBy(stores.id)
       .orderBy(desc(sql<number>`count(${products.id})`))
   return featuredStores
+}
+
+export const getUserStores = async (user: User): Promise<Store[]> => {
+  const userStores = await db.query.stores.findMany({
+    where: eq(stores.userId, user.id),
+    with: {
+      products: {
+        columns: {
+          id: true,
+        }
+      }
+    }
+  })
+  return userStores
 }

@@ -9,7 +9,12 @@ import {
 } from '@/components/ui/alert'
 import { Icons } from '@/constants/icons'
 
-import React from 'react'
+import React, { use } from 'react'
+import { currentUser } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
+import { db } from '@/db'
+import { useQuery } from '@tanstack/react-query'
+import { getUserStores } from '@/app/_actions/store'
 
 export const metadata: Metadata = {
   //metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -17,7 +22,16 @@ export const metadata: Metadata = {
   description: "Manage your stores",
 }
 
-const StoresPage = () => {
+const StoresPage = async () => {
+  const user = await currentUser()
+
+  if (!user) redirect("/sign-in")
+
+  const {} = useQuery({
+    queryKey: ["userStores"],
+    queryFn: async () => getUserStores(user)
+  })
+
   const subscriptionPlan = {
     name: "Ollie",
     isSubscribed: true,
