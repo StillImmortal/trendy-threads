@@ -6,6 +6,10 @@ export const cartItemSchema = z.object({
   productSubcategory: z.string().optional().nullable(),
 })
 
+export const checkoutItemSchema = cartItemSchema.extend({
+  price: z.number(),
+})
+
 export const deleteCartItemSchema = z.object({
   productId: z.number(),
 })
