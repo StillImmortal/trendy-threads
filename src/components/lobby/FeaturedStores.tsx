@@ -1,8 +1,9 @@
 "use client"
 
-import { useQuery } from '@tanstack/react-query'
-import Link from 'next/link'
+import Link from "next/link"
+import { useQuery } from "@tanstack/react-query"
 
+import { cn } from "@/lib/utils"
 import {
   Card,
   CardContent,
@@ -10,27 +11,27 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { cn } from '@/lib/utils'
-import { buttonVariants } from '../ui/button'
-import { getFeaturedStores } from '@/app/_actions/store'
+import { getFeaturedStores } from "@/app/_actions/store"
+
+import { buttonVariants } from "../ui/button"
 
 const FeaturedStores = () => {
   const { data: featuredStores } = useQuery({
     queryKey: ["featuredStores"],
-    queryFn: async () => await getFeaturedStores()
+    queryFn: async () => await getFeaturedStores(),
   })
 
   return (
     <section
-      id='featured-stores'
-      aria-label='featured-stores-heading'
-      className='space-y-6'
+      id="featured-stores"
+      aria-label="featured-stores-heading"
+      className="space-y-6"
     >
       <h2 className="text-2xl font-medium sm:text-3xl">Featured stores</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {featuredStores?.map((store) => (
-          <Card key={store.id} className="flex flex-col h-full">
-            <CardHeader className='flex-1'>
+          <Card key={store.id} className="flex h-full flex-col">
+            <CardHeader className="flex-1">
               <CardTitle className="line-clamp-1">{store.name}</CardTitle>
               <CardDescription className="line-clamp-2">
                 {store.description}
@@ -42,7 +43,7 @@ const FeaturedStores = () => {
                   className={cn(
                     buttonVariants({
                       size: "sm",
-                      className: "h-8 w-full"
+                      className: "h-8 w-full",
                     })
                   )}
                 >

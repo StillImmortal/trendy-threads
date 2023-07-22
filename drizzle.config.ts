@@ -1,5 +1,6 @@
-import type { Config } from "drizzle-kit"
 import dotenv from "dotenv"
+import type { Config } from "drizzle-kit"
+
 dotenv.config({ path: ".env.local" })
 
 const config: Config = {
@@ -7,8 +8,8 @@ const config: Config = {
   out: "./drizzle",
   driver: "mysql2",
   dbCredentials: {
-    connectionString: process.env.DATABASE_URL as string
-  }
+    connectionString: process.env.DATABASE_URL as string,
+  },
 }
 
 export default config

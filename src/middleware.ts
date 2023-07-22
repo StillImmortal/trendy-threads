@@ -1,6 +1,5 @@
-import { NextResponse } from "next/server";
-import { clerkClient } from "@clerk/nextjs";
-import { authMiddleware } from "@clerk/nextjs";
+import { NextResponse } from "next/server"
+import { authMiddleware, clerkClient } from "@clerk/nextjs"
 
 export default authMiddleware({
   publicRoutes: [
@@ -15,7 +14,7 @@ export default authMiddleware({
       //  For public routes, we don't need to do anything
       return NextResponse.next()
     }
-  }
+  },
 })
 
 export const config = {

@@ -1,6 +1,7 @@
-import { ReactNode } from 'react'
-import { Footer, Header } from '@/components/layout'
-import { currentUser } from '@clerk/nextjs'
+import { ReactNode } from "react"
+import { currentUser } from "@clerk/nextjs"
+
+import { Footer, Header } from "@/components/layout"
 
 interface LobbyLayoutProps {
   children: ReactNode
@@ -12,9 +13,7 @@ const LobbyLayout = async ({ children }: LobbyLayoutProps) => {
   return (
     <div>
       <Header user={user} />
-      <main className='flex-1'>
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
       {/* <Footer /> */}
     </div>
   )

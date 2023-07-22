@@ -1,9 +1,9 @@
+import { Product } from "@/db/schema"
+import { CartLineItem } from "@/types"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 
-import { addToCart, updateCartItem, deleteCartItem } from "@/app/_actions/cart"
-import { Product } from "@/db/schema"
-import { CartLineItem } from "@/types"
+import { addToCart, deleteCartItem, updateCartItem } from "@/app/_actions/cart"
 
 export const useAddToCart = (product: Product) => {
   const queryClient = useQueryClient()
@@ -13,11 +13,14 @@ export const useAddToCart = (product: Product) => {
     mutationFn: async () => {
       await addToCart({
         productId: product.id,
-        quantity: 1
+        quantity: 1,
       })
-      await queryClient.refetchQueries({queryKey: ["cartLineItems"], type: "active"})
+      await queryClient.refetchQueries({
+        queryKey: ["cartLineItems"],
+        type: "active",
+      })
       toast.success("Added to cart.")
-    }
+    },
   })
 }
 
@@ -28,34 +31,40 @@ export const useUpdateCart = (cartLineItem: CartLineItem) => {
     mutationKey: ["product", cartLineItem.id],
     mutationFn: async ({
       actionType,
-      quantity
-    }: { actionType?: "remove" | "add" | "delete", quantity?: number }) => {
+      quantity,
+    }: {
+      actionType?: "remove" | "add" | "delete"
+      quantity?: number
+    }) => {
       switch (actionType) {
-        case 'remove': 
+        case "remove":
           await updateCartItem({
             productId: cartLineItem.id,
-            quantity: Number(cartLineItem.quantity) - 1
+            quantity: Number(cartLineItem.quantity) - 1,
           })
           break
-        case 'add':
+        case "add":
           await updateCartItem({
             productId: cartLineItem.id,
-            quantity: Number(cartLineItem.quantity) + 1
+            quantity: Number(cartLineItem.quantity) + 1,
           })
           break
-        case 'delete':
+        case "delete":
           await deleteCartItem({
-            productId: cartLineItem.id
-          }) 
+            productId: cartLineItem.id,
+          })
           break
         default:
           await updateCartItem({
             productId: cartLineItem.id,
-            quantity: Number(quantity)
+            quantity: Number(quantity),
           })
           break
       }
-      await queryClient.refetchQueries({queryKey: ["cartLineItems"], type: "active"})
-    }
+      await queryClient.refetchQueries({
+        queryKey: ["cartLineItems"],
+        type: "active",
+      })
+    },
   })
 }

@@ -1,27 +1,28 @@
 "use client"
 
-import { useTransition } from 'react'
-import { useRouter } from 'next/navigation'
+import { useTransition } from "react"
+import { useRouter } from "next/navigation"
+import { Icons } from "@/constants/icons"
+import { useSignIn } from "@clerk/nextjs"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import * as z from "zod"
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { useSignIn } from '@clerk/nextjs'
-import { toast } from 'sonner'
 
-import { 
-  Form, 
-  FormField, 
+import { authSchema } from "@/lib/validations/auth"
+import { authError } from "@/lib/validations/authError"
+
+import { Button } from "../ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
   FormItem,
   FormLabel,
-  FormControl,
-  FormMessage, 
-} from '../ui/form'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button'
-import { authSchema } from '@/lib/validations/auth'
-import { authError } from '@/lib/validations/authError'
-import { Icons } from '@/constants/icons'
-import PasswordInput from './PasswordInput'
+  FormMessage,
+} from "../ui/form"
+import { Input } from "../ui/input"
+import PasswordInput from "./PasswordInput"
 
 type Inputs = z.infer<typeof authSchema>
 
@@ -30,13 +31,13 @@ const SignInForm = () => {
   const { signIn, isLoaded, setActive } = useSignIn()
   const [isPending, startTransition] = useTransition()
 
-  // React-Hook-Form with Zod 
+  // React-Hook-Form with Zod
   const form = useForm<Inputs>({
     resolver: zodResolver(authSchema),
     defaultValues: {
       email: "",
-      password: ""
-    }
+      password: "",
+    },
   })
 
   // Submitting a sign in
@@ -47,9 +48,9 @@ const SignInForm = () => {
       try {
         const result = await signIn.create({
           identifier: email,
-          password
+          password,
         })
-        
+
         if (result.status === "complete") {
           await setActive({ session: result.createdSessionId })
           router.push(`${window.location.origin}/`)
@@ -68,47 +69,38 @@ const SignInForm = () => {
     <Form {...form}>
       <form
         onSubmit={(...args) => form.handleSubmit(onSubmit)(...args)}
-        className='grid gap-4'
+        className="grid gap-4"
       >
-        <FormField 
+        <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input 
-                  {...field} 
-                  placeholder="email@example.com" 
-                />
+                <Input {...field} placeholder="email@example.com" />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField 
+        <FormField
           control={form.control}
           name="password"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <PasswordInput 
-                  {...field} 
-                  placeholder="**********" 
-                />
+                <PasswordInput {...field} placeholder="**********" />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button 
-          disabled={isPending}
-          type="submit"
-        >
+        <Button disabled={isPending} type="submit">
           {isPending && (
             <Icons.spinner
-              className="w-4 h-4 mr-2 animate-spin"
+              className="mr-2 h-4 w-4 animate-spin"
               aria-hidden="true"
             />
           )}

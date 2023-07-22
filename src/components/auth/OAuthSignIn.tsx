@@ -1,16 +1,18 @@
 "use client"
 
-import { useState } from 'react'
-import type { OAuthStrategy } from "@clerk/types";
-import { Icons } from '@/constants/icons'
-import { Button } from '../ui/button'
-import { useSignIn } from '@clerk/nextjs'
-import { authError } from '@/lib/validations/authError';
+import { useState } from "react"
+import { Icons } from "@/constants/icons"
+import { useSignIn } from "@clerk/nextjs"
+import type { OAuthStrategy } from "@clerk/types"
+
+import { authError } from "@/lib/validations/authError"
+
+import { Button } from "../ui/button"
 
 const oauthProviders = [
-  {name: "Google", strategy: "oauth_google", icon: "google"},
-  {name: "Discord", strategy: "oauth_discord", icon: "discord"},
-  {name: "GitHub", strategy: "oauth_github", icon: "gitHub"},
+  { name: "Google", strategy: "oauth_google", icon: "google" },
+  { name: "Discord", strategy: "oauth_discord", icon: "discord" },
+  { name: "GitHub", strategy: "oauth_github", icon: "gitHub" },
 ] satisfies {
   name: string
   strategy: OAuthStrategy
@@ -29,7 +31,7 @@ const OAuthSignIn = () => {
       await signIn.authenticateWithRedirect({
         strategy: provider,
         redirectUrl: "/sso-callback",
-        redirectUrlComplete: "/"
+        redirectUrlComplete: "/",
       })
     } catch (error) {
       setIsLoading(null)
@@ -38,7 +40,7 @@ const OAuthSignIn = () => {
   }
 
   return (
-    <div className='grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4'>
+    <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
       {oauthProviders.map((provider) => {
         const Icon = Icons[provider.icon]
 
@@ -47,23 +49,22 @@ const OAuthSignIn = () => {
             key={provider.strategy}
             aria-label={`Sign up with ${provider.name}`}
             variant="outline"
-            className='w-full bg-background sm:w-auto'
+            className="w-full bg-background sm:w-auto"
             onClick={() => oauthSignUp(provider.strategy)}
             disabled={isLoading !== null}
           >
             {isLoading === provider.strategy ? (
               <Icons.spinner
-                className="w-4 h-4 mr-2 animate-spin"
+                className="mr-2 h-4 w-4 animate-spin"
                 aria-hidden="true"
               />
             ) : (
-              <Icon className="w-4 h-4 mr-2" aria-hidden="true" />
+              <Icon className="mr-2 h-4 w-4" aria-hidden="true" />
             )}
             {provider.name}
           </Button>
         )
       })}
-
     </div>
   )
 }

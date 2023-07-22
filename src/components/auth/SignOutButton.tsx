@@ -1,15 +1,15 @@
 "use client"
 
-import React, { useTransition } from 'react'
-import { useRouter } from 'next/navigation'
-import { SignOutButton as LogOutButton } from '@clerk/nextjs'
+import React, { useTransition } from "react"
+import { useRouter } from "next/navigation"
+import { Icons } from "@/constants/icons"
+import { useMounted } from "@/hooks"
+import { SignOutButton as LogOutButton } from "@clerk/nextjs"
 
-import { cn } from '@/lib/utils'
-import { useMounted } from '@/hooks'
-import { Button, buttonVariants } from '../ui/button'
-import { Icons } from '@/constants/icons'
-import { Skeleton } from '../ui/skeleton'
+import { cn } from "@/lib/utils"
 
+import { Button, buttonVariants } from "../ui/button"
+import { Skeleton } from "../ui/skeleton"
 
 const SignOutButton = () => {
   const router = useRouter()
@@ -17,7 +17,7 @@ const SignOutButton = () => {
   const [isPending, startTransition] = useTransition()
 
   return (
-    <div className='flex items-center w-full space-x-2'>
+    <div className="flex w-full items-center space-x-2">
       {mounted ? (
         <LogOutButton
           signOutCallback={() => {
@@ -33,16 +33,18 @@ const SignOutButton = () => {
             disabled={isPending}
           >
             {isPending && (
-              <Icons.spinner className="w-4 h-4 mr-2 animate-spin" />
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
             Log out
           </Button>
         </LogOutButton>
       ) : (
-        <Skeleton className={cn(
-          buttonVariants({ size: "sm" }),
-          "w-full bg-muted text-muted-foreground"
-        )}>
+        <Skeleton
+          className={cn(
+            buttonVariants({ size: "sm" }),
+            "w-full bg-muted text-muted-foreground"
+          )}
+        >
           Sign out
         </Skeleton>
       )}

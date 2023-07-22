@@ -1,7 +1,4 @@
-import Products from "./Products";
-import PaginationBar from "./PaginationBar";
+import PaginationBar from "./PaginationBar"
+import Products from "./Products"
 
-export {
-  Products,
-  PaginationBar,
-}
+export { Products, PaginationBar }

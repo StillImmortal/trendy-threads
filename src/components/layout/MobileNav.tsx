@@ -1,12 +1,13 @@
 "use client"
 
-import { Dispatch, ReactNode, SetStateAction, useState } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { MainNavItem, SidebarNavItem } from '@/types'
+import { Dispatch, ReactNode, SetStateAction, useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { siteConfig } from "@/config"
+import { Icons } from "@/constants/icons"
+import { MainNavItem, SidebarNavItem } from "@/types"
 
-import { siteConfig } from '@/config'
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils"
 import {
   Accordion,
   AccordionContent,
@@ -16,11 +17,10 @@ import {
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Icons } from '@/constants/icons'
 
 interface MobileNavProps {
   mainNavItems?: MainNavItem[]
-  sidebarNavItems: SidebarNavItem[] 
+  sidebarNavItems: SidebarNavItem[]
 }
 
 const MobileNav = ({ mainNavItems, sidebarNavItems }: MobileNavProps) => {
@@ -30,15 +30,15 @@ const MobileNav = ({ mainNavItems, sidebarNavItems }: MobileNavProps) => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button 
+        <Button
           variant="ghost"
-          className='px-0 mr-2 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden'
+          className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden"
         >
-          <Icons.menu className='w-6 h-6' />
+          <Icons.menu className="h-6 w-6" />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className='pl-1 pr-0'>
+      <SheetContent side="left" className="pl-1 pr-0">
         <div className="px-7">
           <Link
             aria-label="Home"
@@ -46,7 +46,7 @@ const MobileNav = ({ mainNavItems, sidebarNavItems }: MobileNavProps) => {
             className="flex items-center"
             onClick={() => setIsOpen(false)}
           >
-            <Icons.logo className="w-6 h-6 mr-2" aria-hidden="true" />
+            <Icons.logo className="mr-2 h-6 w-6" aria-hidden="true" />
             <span className="font-bold">{siteConfig.name}</span>
           </Link>
         </div>
@@ -74,7 +74,7 @@ const MobileNav = ({ mainNavItems, sidebarNavItems }: MobileNavProps) => {
                         ) : (
                           <div
                             key={index}
-                            className="transition-colors text-foreground/70"
+                            className="text-foreground/70 transition-colors"
                           >
                             {item.title}
                           </div>
@@ -104,7 +104,7 @@ const MobileNav = ({ mainNavItems, sidebarNavItems }: MobileNavProps) => {
                       ) : (
                         <div
                           key={index}
-                          className="transition-colors text-foreground/70"
+                          className="text-foreground/70 transition-colors"
                         >
                           {item.title}
                         </div>
@@ -151,4 +151,4 @@ function MobileLink({
   )
 }
 
-export default MobileNav 
+export default MobileNav

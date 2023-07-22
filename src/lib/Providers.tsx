@@ -1,10 +1,10 @@
 "use client"
 
-import { FC, useState } from 'react'
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { FC, useState } from "react"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { ThemeProvider } from "next-themes"
-import type { ThemeProviderProps } from 'next-themes/dist/types'
+import type { ThemeProviderProps } from "next-themes/dist/types"
 
 const Providers: FC<ThemeProviderProps> = ({ children, ...props }) => {
   const [client] = useState(
@@ -12,10 +12,10 @@ const Providers: FC<ThemeProviderProps> = ({ children, ...props }) => {
   )
   return (
     <ThemeProvider {...props}>
-        <QueryClientProvider client={client}>
-          {children}
-          <ReactQueryDevtools />
-        </QueryClientProvider>
+      <QueryClientProvider client={client}>
+        {children}
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </ThemeProvider>
   )
 }

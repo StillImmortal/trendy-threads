@@ -1,26 +1,27 @@
 "use client"
 
-import { useTransition } from 'react'
-import { useRouter } from 'next/navigation'
+import { useTransition } from "react"
+import { useRouter } from "next/navigation"
+import { Icons } from "@/constants/icons"
+import { useSignUp } from "@clerk/nextjs"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import * as z from "zod"
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { useSignUp } from '@clerk/nextjs'
-import { toast } from 'sonner'
 
-import { 
-  Form, 
-  FormField, 
+import { verifyEmailSchema } from "@/lib/validations/auth"
+import { authError } from "@/lib/validations/authError"
+
+import { Button } from "../ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
   FormItem,
   FormLabel,
-  FormControl,
-  FormMessage, 
-} from '../ui/form'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button'
-import { verifyEmailSchema } from '@/lib/validations/auth'
-import { authError } from '@/lib/validations/authError'
-import { Icons } from '@/constants/icons'
+  FormMessage,
+} from "../ui/form"
+import { Input } from "../ui/input"
 
 type Inputs = z.infer<typeof verifyEmailSchema>
 
@@ -29,12 +30,12 @@ const VerifyEmailForm = () => {
   const { signUp, isLoaded, setActive } = useSignUp()
   const [isPending, startTransition] = useTransition()
 
-  // React-Hook-Form with Zod 
+  // React-Hook-Form with Zod
   const form = useForm<Inputs>({
     resolver: zodResolver(verifyEmailSchema),
     defaultValues: {
-      code: ""
-    }
+      code: "",
+    },
   })
 
   // Verifying an email
@@ -44,7 +45,7 @@ const VerifyEmailForm = () => {
     startTransition(async () => {
       try {
         const completeSignUp = await signUp.attemptEmailAddressVerification({
-          code
+          code,
         })
 
         if (completeSignUp.status !== "complete") {
@@ -68,18 +69,18 @@ const VerifyEmailForm = () => {
     <Form {...form}>
       <form
         onSubmit={(...args) => form.handleSubmit(onSubmit)(...args)}
-        className='grid gap-4'
+        className="grid gap-4"
       >
-        <FormField 
+        <FormField
           control={form.control}
           name="code"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Code</FormLabel>
               <FormControl>
-                <Input 
-                  {...field} 
-                  placeholder="" 
+                <Input
+                  {...field}
+                  placeholder=""
                   onChange={(e) => {
                     e.target.value = e.target.value.trim()
                     field.onChange(e)
@@ -90,13 +91,10 @@ const VerifyEmailForm = () => {
             </FormItem>
           )}
         />
-        <Button 
-          disabled={isPending}
-          type="submit"
-        >
+        <Button disabled={isPending} type="submit">
           {isPending && (
             <Icons.spinner
-              className="w-4 h-4 mr-2 animate-spin"
+              className="mr-2 h-4 w-4 animate-spin"
               aria-hidden="true"
             />
           )}

@@ -29,7 +29,7 @@ export const getCart = async (): Promise<CartLineItem[]> => {
   // }]
 
   const cart = await db.query.carts.findFirst({
-    where: eq(carts.id, Number(cartId))
+    where: eq(carts.id, Number(cartId)),
   })
 
   const productIds = cart?.items?.map((item) => item.productId) ?? []
@@ -51,21 +51,21 @@ export const getCart = async (): Promise<CartLineItem[]> => {
     .from(products)
     .where(inArray(products.id, uniqueProductIds))
 
-    const allCartLineItems = cartLineItems.map((item) => {
-      const quantity = cart?.items?.find(
-        (cartItem) => cartItem.productId === item.id
-      )?.quantity
+  const allCartLineItems = cartLineItems.map((item) => {
+    const quantity = cart?.items?.find(
+      (cartItem) => cartItem.productId === item.id
+    )?.quantity
 
-      return {
-        ...item,
-        quantity,
-      }
-    })
+    return {
+      ...item,
+      quantity,
+    }
+  })
 
-    return allCartLineItems
+  return allCartLineItems
 }
 
-export const getCartItems = async (input: {cartId?: bigint }) => {
+export const getCartItems = async (input: { cartId?: bigint }) => {
   if (!input.cartId || isNaN(Number(input.cartId))) return []
 
   const cart = await db.query.carts.findFirst({
@@ -82,7 +82,7 @@ export const addToCart = async (input: z.infer<typeof cartItemSchema>) => {
   console.log(input)
   if (!cartId) {
     const cart = await db.insert(carts).values({
-      items: [input]
+      items: [input],
     })
 
     // Note: .set() is only available in a Server Action or Route Handler
@@ -92,7 +92,7 @@ export const addToCart = async (input: z.infer<typeof cartItemSchema>) => {
   }
 
   const cart = await db.query.carts.findFirst({
-    where: eq(carts.id, Number(cartId))
+    where: eq(carts.id, Number(cartId)),
   })
 
   if (!cart) {
@@ -117,7 +117,7 @@ export const addToCart = async (input: z.infer<typeof cartItemSchema>) => {
   await db
     .update(carts)
     .set({
-      items: cart.items
+      items: cart.items,
     })
     .where(eq(carts.id, Number(cartId)))
 }
@@ -134,7 +134,7 @@ export const updateCartItem = async (input: z.infer<typeof cartItemSchema>) => {
   }
 
   const cart = await db.query.carts.findFirst({
-    where: eq(carts.id, Number(cartId))
+    where: eq(carts.id, Number(cartId)),
   })
 
   if (!cart) {
@@ -150,7 +150,8 @@ export const updateCartItem = async (input: z.infer<typeof cartItemSchema>) => {
   }
 
   if (input.quantity === 0) {
-    cart.items = cart.items?.filter((item) => item.productId !== input.productId) ?? []
+    cart.items =
+      cart.items?.filter((item) => item.productId !== input.productId) ?? []
   } else {
     cartItem.quantity = input.quantity
   }
@@ -158,7 +159,7 @@ export const updateCartItem = async (input: z.infer<typeof cartItemSchema>) => {
   await db
     .update(carts)
     .set({
-      items: cart.items
+      items: cart.items,
     })
     .where(eq(carts.id, Number(cartId)))
 }
@@ -177,7 +178,9 @@ export const deleteCart = async () => {
   await db.delete(carts).where(eq(carts.id, Number(cartId)))
 }
 
-export const deleteCartItem = async (input: z.infer<typeof deleteCartItemSchema>) => {
+export const deleteCartItem = async (
+  input: z.infer<typeof deleteCartItemSchema>
+) => {
   const cartId = cookies().get("cartId")?.value
 
   if (!cartId) {
@@ -189,12 +192,13 @@ export const deleteCartItem = async (input: z.infer<typeof deleteCartItemSchema>
   }
 
   const cart = await db.query.carts.findFirst({
-    where: eq(carts.id, Number(cartId))
+    where: eq(carts.id, Number(cartId)),
   })
 
   if (!cart) return
 
-  cart.items = cart.items?.filter((item) => item.productId !== input.productId) ?? []
+  cart.items =
+    cart.items?.filter((item) => item.productId !== input.productId) ?? []
 
   await db
     .update(carts)
@@ -204,7 +208,9 @@ export const deleteCartItem = async (input: z.infer<typeof deleteCartItemSchema>
     .where(eq(carts.id, Number(cartId)))
 }
 
-export const deleteCartItems = async (input: z.infer<typeof deleteCartItemsSchema>) => {
+export const deleteCartItems = async (
+  input: z.infer<typeof deleteCartItemsSchema>
+) => {
   const cartId = cookies().get("cartId")?.value
 
   if (!cartId) {
@@ -216,12 +222,14 @@ export const deleteCartItems = async (input: z.infer<typeof deleteCartItemsSchem
   }
 
   const cart = await db.query.carts.findFirst({
-    where: eq(carts.id, Number(cartId))
+    where: eq(carts.id, Number(cartId)),
   })
 
   if (!cart) return
 
-  cart.items = cart.items?.filter((item) => !input.productIds.includes(item.productId)) ?? []
+  cart.items =
+    cart.items?.filter((item) => !input.productIds.includes(item.productId)) ??
+    []
 
   await db
     .update(carts)

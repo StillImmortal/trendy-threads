@@ -1,9 +1,10 @@
 "use client"
 
 import React from "react"
-import { cn } from "@/lib/utils"
-import { NavigationMenuLink } from "../ui/navigation-menu"
 import Link from "next/link"
+
+import { cn } from "@/lib/utils"
+import { NavigationMenuLink } from "@/components/ui/navigation-menu"
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -22,7 +23,7 @@ const ListItem = React.forwardRef<
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="text-sm leading-snug line-clamp-3 text-muted-foreground">
+          <p className="line-clamp-3 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
         </Link>

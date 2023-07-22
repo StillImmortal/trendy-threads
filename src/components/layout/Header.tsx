@@ -1,7 +1,7 @@
 import Link from "next/link"
+import { dashboardConfig, siteConfig } from "@/config"
 import { type User } from "@clerk/nextjs/dist/types/server"
 
-import { siteConfig, dashboardConfig } from "@/config"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
@@ -14,26 +14,34 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { CartSheet, MainNav, MobileNav, SearchCombobox } from "@/components/layout"
-
+import {
+  CartSheet,
+  MainNav,
+  MobileNav,
+  SearchCombobox,
+} from "@/components/layout"
 
 interface SiteHeaderProps {
   user: User | null
 }
 
 const Header = ({ user }: SiteHeaderProps) => {
-  const initials = `${user?.firstName?.charAt(0) ?? ""}${user?.lastName?.charAt(0) ?? ""}`
-  const email = user?.emailAddresses?.find((e) => e.id === user.primaryEmailAddressId)?.emailAddress ?? ""
-  
+  const initials = `${user?.firstName?.charAt(0) ?? ""}${
+    user?.lastName?.charAt(0) ?? ""
+  }`
+  const email =
+    user?.emailAddresses?.find((e) => e.id === user.primaryEmailAddressId)
+      ?.emailAddress ?? ""
+
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="container flex items-center h-16">
+      <div className="container flex h-16 items-center">
         <MainNav items={siteConfig.mainNav} />
         <MobileNav
           mainNavItems={siteConfig.mainNav}
           sidebarNavItems={dashboardConfig.sidebarNav}
         />
-        <div className="flex items-center justify-end flex-1 space-x-4">
+        <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-2">
             <SearchCombobox />
             <CartSheet />
@@ -42,9 +50,9 @@ const Header = ({ user }: SiteHeaderProps) => {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="secondary"
-                    className="relative w-8 h-8 rounded-full"
+                    className="relative h-8 w-8 rounded-full"
                   >
-                    <Avatar className="w-8 h-8">
+                    <Avatar className="h-8 w-8">
                       <AvatarImage
                         src={user.imageUrl}
                         alt={user.username ?? ""}
@@ -58,7 +66,7 @@ const Header = ({ user }: SiteHeaderProps) => {
               <Link href="/sign-in">
                 <div
                   className={buttonVariants({
-                    size: "sm"
+                    size: "sm",
                   })}
                 >
                   Sign in

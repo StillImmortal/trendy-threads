@@ -7,17 +7,17 @@ import { currentUser } from "@clerk/nextjs"
 import {
   Card,
   CardContent,
-  CardDescription,  
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { SignInForm, OAuthSignIn } from "@/components/auth"
+import { OAuthSignIn, SignInForm } from "@/components/auth"
 import { Container } from "@/components/custom"
 
 export const metadata: Metadata = {
   title: "Sign In",
-  description: "Sign in for an account"
+  description: "Sign in for an account",
 }
 
 const SignInPage = async () => {
@@ -40,7 +40,7 @@ const SignInPage = async () => {
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="px-2 bg-background text-muted-foreground">
+              <span className="bg-background px-2 text-muted-foreground">
                 Or continue with
               </span>
             </div>
@@ -49,7 +49,7 @@ const SignInPage = async () => {
         </CardContent>
         <CardFooter className="flex flex-wrap items-center justify-between gap-2">
           <div className="text-sm text-muted-foreground">
-            <span className="hidden mr-1 sm:inline-block">
+            <span className="mr-1 hidden sm:inline-block">
               Don&apos;t have an account?
             </span>
             <Link

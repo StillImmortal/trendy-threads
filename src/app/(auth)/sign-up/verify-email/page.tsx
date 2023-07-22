@@ -1,10 +1,11 @@
 import { type Metadata } from "next"
+
 //import dotenv from "dotenv"
 
 import {
   Card,
   CardContent,
-  CardDescription,  
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -14,7 +15,7 @@ import { Container } from "@/components/custom"
 
 export const metadata: Metadata = {
   title: "Verify Email",
-  description: "Verify your email address to continue with your sign up"
+  description: "Verify your email address to continue with your sign up",
 }
 
 const VerifyEmailPage = async () => {

@@ -1,3 +1,1 @@
-export const getUserSubscriptionPlan = () => {
-  
-}
+export const getUserSubscriptionPlan = () => {}

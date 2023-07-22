@@ -5,7 +5,5 @@ export type DashboardCongig = {
 }
 
 export const dashboardConfig: DashboardCongig = {
-  sidebarNav: [
-    
-  ]
+  sidebarNav: [],
 }
