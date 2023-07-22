@@ -1,14 +1,12 @@
 "use client"
 
-import { useEffect } from 'react'
-import { useClerk } from '@clerk/nextjs'
+import { useEffect } from "react"
+import { Icons } from "@/constants/icons"
+import { useClerk } from "@clerk/nextjs"
 
-import { Icons } from '@/constants/icons'
-import type { SSOCallbackPageProps } from '@/app/(auth)/sso-callback/page'
+import type { SSOCallbackPageProps } from "@/app/(auth)/sso-callback/page"
 
-const SSOCallback = ({
-  searchParams
-}: SSOCallbackPageProps) => {
+const SSOCallback = ({ searchParams }: SSOCallbackPageProps) => {
   const { handleRedirectCallback } = useClerk()
 
   useEffect(() => {

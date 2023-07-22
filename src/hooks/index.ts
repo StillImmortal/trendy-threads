@@ -1,10 +1,5 @@
-import useMounted from "./useMounted";
-import useDebounce from "./useDebounce";
-import { useAddToCart, useUpdateCart } from "./useMutation";
+import useDebounce from "./useDebounce"
+import useMounted from "./useMounted"
+import { useAddToCart, useUpdateCart } from "./useMutation"
 
-export {
-  useMounted,
-  useDebounce,
-  useAddToCart,
-  useUpdateCart
-}
+export { useMounted, useDebounce, useAddToCart, useUpdateCart }

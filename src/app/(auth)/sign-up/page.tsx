@@ -7,17 +7,17 @@ import { currentUser } from "@clerk/nextjs"
 import {
   Card,
   CardContent,
-  CardDescription,  
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { SignUpForm, OAuthSignIn } from "@/components/auth"
+import { OAuthSignIn, SignUpForm } from "@/components/auth"
 import { Container } from "@/components/custom"
 
 export const metadata: Metadata = {
   title: "Sign Up",
-  description: "Sign up for an account"
+  description: "Sign up for an account",
 }
 
 const SignUpPage = async () => {
@@ -40,7 +40,7 @@ const SignUpPage = async () => {
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="px-2 bg-background text-muted-foreground">
+              <span className="bg-background px-2 text-muted-foreground">
                 Or continue with
               </span>
             </div>
@@ -53,7 +53,7 @@ const SignUpPage = async () => {
             <Link
               aria-label="Sign in"
               href={"/sign-in"}
-              className="transition-colors text-primary underline-offset-4 hover:underline"
+              className="text-primary underline-offset-4 transition-colors hover:underline"
             >
               Sign in
             </Link>

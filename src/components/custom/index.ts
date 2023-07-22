@@ -1,8 +1,4 @@
-import ListItem from "./ListItem";
-import { Container, containerVariants } from "../ui/container";
+import { Container, containerVariants } from "../ui/container"
+import ListItem from "./ListItem"
 
-export {
-  ListItem,
-  Container,
-  containerVariants,
-}
+export { ListItem, Container, containerVariants }

@@ -1,9 +1,9 @@
-import React from 'react'
-import { type Metadata } from 'next'
+import React from "react"
+import { type Metadata } from "next"
 
-import { Container } from '@/components/custom'
-import { Products } from '@/components/lobby/products'
-import { SectionHeader } from '@/components/layout'
+import { Container } from "@/components/custom"
+import { SectionHeader } from "@/components/layout"
+import { Products } from "@/components/lobby/products"
 
 export const metadata: Metadata = {
   //metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -17,12 +17,10 @@ interface ProductsPageProps {
   }
 }
 
-const ProductsPage = ({
-  searchParams
-}: ProductsPageProps) => {
+const ProductsPage = ({ searchParams }: ProductsPageProps) => {
   return (
     <Container>
-      <SectionHeader 
+      <SectionHeader
         title="Products"
         description="Buy products from our stores"
         size="sm"

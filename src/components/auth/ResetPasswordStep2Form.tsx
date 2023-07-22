@@ -1,43 +1,44 @@
 "use client"
 
-import { useTransition } from 'react'
-import { useRouter } from 'next/navigation'
+import { useTransition } from "react"
+import { useRouter } from "next/navigation"
+import { Icons } from "@/constants/icons"
+import { useSignIn } from "@clerk/nextjs"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import * as z from "zod"
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { useSignIn } from '@clerk/nextjs'
-import { toast } from 'sonner'
 
-import { 
-  Form, 
-  FormField, 
+import { resetPasswordSchema } from "@/lib/validations/auth"
+import { authError } from "@/lib/validations/authError"
+
+import { Button } from "../ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
   FormItem,
   FormLabel,
-  FormControl,
-  FormMessage, 
-} from '../ui/form'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button'
-import { resetPasswordSchema } from '@/lib/validations/auth'
-import { authError } from '@/lib/validations/authError'
-import { Icons } from '@/constants/icons'
-import PasswordInput from './PasswordInput'
+  FormMessage,
+} from "../ui/form"
+import { Input } from "../ui/input"
+import PasswordInput from "./PasswordInput"
 
 type Inputs = z.infer<typeof resetPasswordSchema>
 
 const ResetPasswordStep2Form = () => {
   const router = useRouter()
   const { isLoaded, signIn, setActive } = useSignIn()
-  const [isPending, startTransition ] = useTransition()
+  const [isPending, startTransition] = useTransition()
 
-  // React-Hook-Form with Zod 
+  // React-Hook-Form with Zod
   const form = useForm<Inputs>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
       password: "",
       confirmPassword: "",
-      code: ""
-    }
+      code: "",
+    },
   })
 
   // Resetting a password with code
@@ -49,9 +50,9 @@ const ResetPasswordStep2Form = () => {
         const attemptFirstFactor = await signIn.attemptFirstFactor({
           strategy: "reset_password_email_code",
           password,
-          code
+          code,
         })
-        
+
         if (attemptFirstFactor.status === "needs_second_factor") {
           // TODO: implement 2FA (requires clerk pro plan)
         } else if (attemptFirstFactor.status === "complete") {
@@ -74,63 +75,51 @@ const ResetPasswordStep2Form = () => {
     <Form {...form}>
       <form
         onSubmit={(...args) => form.handleSubmit(onSubmit)(...args)}
-        className='grid gap-4'
+        className="grid gap-4"
       >
-        <FormField 
+        <FormField
           control={form.control}
           name="password"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <PasswordInput 
-                  {...field} 
-                  placeholder="**********" 
-                />
+                <PasswordInput {...field} placeholder="**********" />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField 
+        <FormField
           control={form.control}
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Confirm Password</FormLabel>
               <FormControl>
-                <PasswordInput 
-                  {...field} 
-                  placeholder="**********" 
-                />
+                <PasswordInput {...field} placeholder="**********" />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField 
+        <FormField
           control={form.control}
           name="code"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Code</FormLabel>
               <FormControl>
-                <Input 
-                  {...field} 
-                  placeholder="245295" 
-                />
+                <Input {...field} placeholder="245295" />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button 
-          disabled={isPending}
-          type="submit"
-        >
+        <Button disabled={isPending} type="submit">
           {isPending && (
             <Icons.spinner
-              className="w-4 h-4 mr-2 animate-spin"
+              className="mr-2 h-4 w-4 animate-spin"
               aria-hidden="true"
             />
           )}

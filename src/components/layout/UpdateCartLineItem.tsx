@@ -1,13 +1,14 @@
 "use client"
 
-import { TransitionStartFunction, useTransition } from 'react'
-import { type CartLineItem } from '@/types'
+import { TransitionStartFunction, useTransition } from "react"
+import { Icons } from "@/constants/icons"
+import { useUpdateCart } from "@/hooks"
+import { type CartLineItem } from "@/types"
 
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
-import { Icons } from '@/constants/icons'
-import { actionError } from '@/lib/validations/actionError'
-import { useUpdateCart } from '@/hooks'
+import { actionError } from "@/lib/validations/actionError"
+
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
 
 interface UpdateCartLineItemProps {
   cartLineItem: CartLineItem
@@ -18,9 +19,9 @@ const UpdateCartLineItem = ({ cartLineItem }: UpdateCartLineItemProps) => {
   const { mutate } = useUpdateCart(cartLineItem)
 
   return (
-    <div className='flex items-center space-x-1'>
-      <div className='flex items-center space-x-1'>
-        <ActionButton 
+    <div className="flex items-center space-x-1">
+      <div className="flex items-center space-x-1">
+        <ActionButton
           cartLineItem={cartLineItem}
           isPending={isPending}
           startTransition={startTransition}
@@ -28,10 +29,10 @@ const UpdateCartLineItem = ({ cartLineItem }: UpdateCartLineItemProps) => {
           icon="remove"
           description="Remove one item"
         />
-        <Input 
+        <Input
           type="number"
           min={0}
-          className='h-8 w-14'
+          className="h-8 w-14"
           value={cartLineItem.quantity}
           onChange={(e) => {
             startTransition(async () => {
@@ -44,7 +45,7 @@ const UpdateCartLineItem = ({ cartLineItem }: UpdateCartLineItemProps) => {
           }}
           disabled={isPending}
         />
-        <ActionButton 
+        <ActionButton
           cartLineItem={cartLineItem}
           isPending={isPending}
           startTransition={startTransition}
@@ -52,7 +53,7 @@ const UpdateCartLineItem = ({ cartLineItem }: UpdateCartLineItemProps) => {
           icon="add"
           description="Add one item"
         />
-        <ActionButton 
+        <ActionButton
           cartLineItem={cartLineItem}
           isPending={isPending}
           startTransition={startTransition}
@@ -80,7 +81,7 @@ const ActionButton = ({
   startTransition,
   actionType,
   icon,
-  description
+  description,
 }: ActionButtonProps) => {
   const { mutate } = useUpdateCart(cartLineItem)
   const Icon = Icons[icon]
@@ -89,7 +90,7 @@ const ActionButton = ({
     <Button
       variant="outline"
       size={"icon"}
-      className='w-8 h-8'
+      className="h-8 w-8"
       onClick={() => {
         startTransition(async () => {
           try {
@@ -101,7 +102,7 @@ const ActionButton = ({
       }}
       disabled={isPending}
     >
-      <Icon className='w-3 h-3' aria-hidden="true" />
+      <Icon className="h-3 w-3" aria-hidden="true" />
       <span className="sr-only">{description}</span>
     </Button>
   )

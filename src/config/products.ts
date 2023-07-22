@@ -7,35 +7,37 @@ export const productCategories = [
     subCategories: [
       {
         title: "Shirts & T-Shirts",
-        description: "Elegant tops for every occasion. From formal shirts to casual tees.",
+        description:
+          "Elegant tops for every occasion. From formal shirts to casual tees.",
         image: "",
-        slug: "shirts-t-shirts"
+        slug: "shirts-t-shirts",
       },
       {
         title: "Shorts",
         description: "Cool and comfy for warm weather and relaxation.",
         image: "",
-        slug: "shorts"
+        slug: "shorts",
       },
       {
         title: "Jeans & Trousers",
-        description: "Stylish bottoms for versatile looks. From classic denim to sleek trousers.",
+        description:
+          "Stylish bottoms for versatile looks. From classic denim to sleek trousers.",
         image: "",
-        slug: "jeans-trousers"
+        slug: "jeans-trousers",
       },
       {
         title: "Hoodies & Sweatshirts",
         description: "Cozy and trendy essentials for casual style.",
         image: "",
-        slug: "hoodies-sweatshirts"
+        slug: "hoodies-sweatshirts",
       },
       {
         title: "Underwear",
         description: "Comfortable essentials for everyday wear.",
         image: "",
-        slug: "underwear"
+        slug: "underwear",
       },
-    ]
+    ],
   },
   {
     title: "shoes",
@@ -45,27 +47,27 @@ export const productCategories = [
         title: "Boots",
         description: "Stylish and versatile footwear for any occasion.",
         image: "",
-        slug: "boots"
+        slug: "boots",
       },
       {
         title: "Trainers",
         description: "Modern athletic shoes for active lifestyles.",
         image: "",
-        slug: "trainers"
+        slug: "trainers",
       },
       {
         title: "Sandals",
         description: "Chic and comfortable footwear for sunny days.",
         image: "",
-        slug: "sandals"
+        slug: "sandals",
       },
       {
         title: "Sliders",
         description: "Comfortable and elegant sandals for effortless wear.",
         image: "",
-        slug: "sliders"
+        slug: "sliders",
       },
-    ]
+    ],
   },
   {
     title: "accessories",
@@ -75,28 +77,28 @@ export const productCategories = [
         title: "Sunglasses",
         description: "Protect your eyes in style with our trendy sunglasses.",
         image: "",
-        slug: "sunglasses"
+        slug: "sunglasses",
       },
       {
         title: "Caps & Hats",
         description: "Top off your look with our collection of caps and hats.",
         image: "",
-        slug: "caps-hats"
+        slug: "caps-hats",
       },
       {
         title: "Belts",
         description: "Complete your ensemble with our fashionable belts.",
         image: "",
-        slug: "belts"
+        slug: "belts",
       },
       {
         title: "Chains & Necklaces",
         description: "Accentuate your outfit with our chains and necklaces.",
         image: "",
-        slug: "chains-necklaces"
+        slug: "chains-necklaces",
       },
-    ]
-  }
+    ],
+  },
 ] satisfies {
   title: Product["category"]
   image: string
@@ -111,13 +113,13 @@ export const productCategories = [
 export const getSubcategories = (category?: string) => {
   if (!category) return []
 
-  const subCategories = 
+  const subCategories =
     productCategories
-    .find((c) => c.title === category)
-    ?.subCategories.map((s) => ({
-      label: s.title,
-      value: s.slug
-    })) ?? []
+      .find((c) => c.title === category)
+      ?.subCategories.map((s) => ({
+        label: s.title,
+        value: s.slug,
+      })) ?? []
 
-    return subCategories
+  return subCategories
 }

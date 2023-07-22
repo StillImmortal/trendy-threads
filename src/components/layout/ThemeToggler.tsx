@@ -1,9 +1,9 @@
 "use client"
 
-import { useTheme } from 'next-themes'
+import { Icons } from "@/constants/icons"
+import { useTheme } from "next-themes"
 
-import { Button } from '../ui/button'
-import { Icons } from '@/constants/icons'
+import { Button } from "../ui/button"
 
 const ThemeToggler = () => {
   const { theme, setTheme } = useTheme()
@@ -15,13 +15,13 @@ const ThemeToggler = () => {
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {theme === "light" ? (
-        <Icons.sun 
-          className="w-5 h-5 transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" 
+        <Icons.sun
+          className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
           aria-hidden="true"
         />
       ) : (
         <Icons.moon
-          className="w-5 h-5 transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" 
+          className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
           aria-hidden="true"
         />
       )}

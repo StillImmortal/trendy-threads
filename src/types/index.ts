@@ -9,6 +9,8 @@ import * as z from "zod"
 export interface NavItem {
   title: string
   href?: string
+  title: string
+  href?: string
   disabled?: boolean
   external?: boolean
   icon?: keyof typeof Icons
@@ -72,6 +74,7 @@ export type CheckoutItem = z.infer<typeof checkoutItemSchema>
 export interface CartLineItem
   extends Pick<
     Product,
+    "id" | "brand" | "name" | "images" | "category" | "subCategory" | "price"
     "id" | "brand" | "name" | "images" | "category" | "subCategory" | "price"
   > {
   quantity?: number

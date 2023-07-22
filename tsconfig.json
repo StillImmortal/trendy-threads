@@ -14,6 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
     "plugins": [
       {
@@ -22,9 +23,9 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "contentlayer/generated": ["./.contentlayer/generated"],
     }
   },
-  "include": ["next-env.d.ts", ".eslintrc.cjs", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", ".next/types/**/*.ts", "./contentlayer.config.js", ".contentlayer/generated"],
+  "include": [".eslintrc.cjs", "next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", ".next/types/**/*.ts", "./contentlayer.config.js", ".contentlayer/generated"],
   "exclude": ["node_modules"]
 }

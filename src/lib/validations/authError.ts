@@ -1,5 +1,5 @@
-import { isClerkAPIResponseError } from "@clerk/nextjs";
-import { toast } from "sonner";
+import { isClerkAPIResponseError } from "@clerk/nextjs"
+import { toast } from "sonner"
 
 export const authError = (error: any) => {
   const unknownError = "Something went wrong, please try again."
