@@ -2,19 +2,9 @@ import Link from "next/link"
 import { dashboardConfig, siteConfig } from "@/config"
 import { type User } from "@clerk/nextjs/dist/types/server"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
+  AvatarButton,
   CartSheet,
   MainNav,
   MobileNav,
@@ -29,6 +19,7 @@ const Header = ({ user }: SiteHeaderProps) => {
   const initials = `${user?.firstName?.charAt(0) ?? ""}${
     user?.lastName?.charAt(0) ?? ""
   }`
+
   const email =
     user?.emailAddresses?.find((e) => e.id === user.primaryEmailAddressId)
       ?.emailAddress ?? ""
@@ -46,22 +37,16 @@ const Header = ({ user }: SiteHeaderProps) => {
             <SearchCombobox />
             <CartSheet />
             {user ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="secondary"
-                    className="relative h-8 w-8 rounded-full"
-                  >
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage
-                        src={user.imageUrl}
-                        alt={user.username ?? ""}
-                      />
-                      <AvatarFallback>{initials}</AvatarFallback>
-                    </Avatar>
-                  </Button>
-                </DropdownMenuTrigger>
-              </DropdownMenu>
+              <AvatarButton
+                user={{
+                  imageUrl: user.imageUrl,
+                  username: user.username,
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                }}
+                initials={initials}
+                email={email}
+              />
             ) : (
               <Link href="/sign-in">
                 <div

@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers"
 import { db } from "@/db"
-import { carts, products } from "@/db/schema"
+import { carts, products, stores } from "@/db/schema"
 import { CartLineItem } from "@/types"
 import { eq, inArray } from "drizzle-orm"
 import { type z } from "zod"
@@ -17,16 +17,6 @@ export const getCart = async (): Promise<CartLineItem[]> => {
   const cartId = cookies().get("cartId")?.value
 
   if (!cartId || isNaN(Number(cartId))) return []
-  // if (!cartId || isNaN(Number(cartId))) return [{
-  //   id: 2,
-  //   images: null,
-  //   brand: "Nike Air Jordan",
-  //   name: "Sneakers",
-  //   category: "shoes",
-  //   subCategory: "boots",
-  //   price: "299",
-  //   quantity: 1,
-  // }]
 
   const cart = await db.query.carts.findFirst({
     where: eq(carts.id, Number(cartId)),
@@ -41,14 +31,15 @@ export const getCart = async (): Promise<CartLineItem[]> => {
   const cartLineItems = await db
     .select({
       id: products.id,
-      brand: products.brand,
       name: products.name,
       images: products.images,
       category: products.category,
-      subCategory: products.subCategory,
+      subcategory: products.subcategory,
+      storeName: stores.name,
       price: products.price,
     })
     .from(products)
+    .leftJoin(stores, eq(stores.id, products.storeId))
     .where(inArray(products.id, uniqueProductIds))
 
   const allCartLineItems = cartLineItems.map((item) => {

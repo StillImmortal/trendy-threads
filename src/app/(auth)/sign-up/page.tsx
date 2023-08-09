@@ -1,7 +1,7 @@
 import { type Metadata } from "next"
 import Link from "next/link"
 import { redirect } from "next/navigation"
-//import dotenv from "dotenv"
+import { env } from "@/env.mjs"
 import { currentUser } from "@clerk/nextjs"
 
 import {
@@ -16,6 +16,7 @@ import { OAuthSignIn, SignUpForm } from "@/components/auth"
 import { Container } from "@/components/custom"
 
 export const metadata: Metadata = {
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Sign Up",
   description: "Sign up for an account",
 }

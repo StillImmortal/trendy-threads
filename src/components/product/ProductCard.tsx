@@ -3,13 +3,11 @@
 import { HTMLAttributes, useTransition } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Icons } from "@/constants/icons"
 import { type Product } from "@/db/schema"
-import { useAddToCart } from "@/hooks"
 import { toast } from "sonner"
 
-import { cn, formatPrice } from "@/lib/utils"
-import { actionError } from "@/lib/validations/actionError"
+import { catchError, cn, formatPrice } from "@/lib/utils"
+import { useAddToCart } from "@/hooks/useMutation"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
@@ -20,6 +18,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Icons } from "@/constants/icons"
 
 interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
   product: Product
@@ -37,7 +36,7 @@ const ProductCard = ({
   ...props
 }: ProductCardProps) => {
   const [isPending, startTransition] = useTransition()
-  const { mutate } = useAddToCart(product)
+  const { mutate } = useAddToCart(product.id)
 
   return (
     <Card
@@ -104,9 +103,10 @@ const ProductCard = ({
               onClick={() => {
                 startTransition(async () => {
                   try {
-                    mutate()
+                    mutate({ quantity: 1 })
+                    toast.success("Added to cart.")
                   } catch (error) {
-                    actionError(error)
+                    catchError(error)
                   }
                 })
               }}
@@ -133,7 +133,7 @@ const ProductCard = ({
                   if (isAddedToCart) toast.success("Added to cart.")
                   else toast.success("Removed from cart.")
                 } catch (error) {
-                  actionError(error)
+                  catchError(error)
                 }
               })
             }}

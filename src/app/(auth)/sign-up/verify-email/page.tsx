@@ -1,12 +1,10 @@
 import { type Metadata } from "next"
-
-//import dotenv from "dotenv"
+import { env } from "@/env.mjs"
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -14,6 +12,7 @@ import { VerifyEmailForm } from "@/components/auth"
 import { Container } from "@/components/custom"
 
 export const metadata: Metadata = {
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Verify Email",
   description: "Verify your email address to continue with your sign up",
 }

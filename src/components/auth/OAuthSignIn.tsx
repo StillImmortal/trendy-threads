@@ -5,9 +5,8 @@ import { Icons } from "@/constants/icons"
 import { useSignIn } from "@clerk/nextjs"
 import type { OAuthStrategy } from "@clerk/types"
 
-import { authError } from "@/lib/validations/authError"
-
-import { Button } from "../ui/button"
+import { catchClerkError } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 const oauthProviders = [
   { name: "Google", strategy: "oauth_google", icon: "google" },
@@ -35,7 +34,7 @@ const OAuthSignIn = () => {
       })
     } catch (error) {
       setIsLoading(null)
-      authError(error)
+      catchClerkError(error)
     }
   }
 

@@ -9,10 +9,10 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import * as z from "zod"
 
+import { catchClerkError } from "@/lib/utils"
 import { resetPasswordSchema } from "@/lib/validations/auth"
-import { authError } from "@/lib/validations/authError"
+import { Button } from "@/components/ui/button"
 
-import { Button } from "../ui/button"
 import {
   Form,
   FormControl,
@@ -66,7 +66,7 @@ const ResetPasswordStep2Form = () => {
           toast.error("Invalid code. Please try again.")
         }
       } catch (error) {
-        authError(error)
+        catchClerkError(error)
       }
     })
   }

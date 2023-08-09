@@ -4,9 +4,8 @@ import { forwardRef, useState } from "react"
 import { Icons } from "@/constants/icons"
 
 import { cn } from "@/lib/utils"
-
-import { Button } from "../ui/button"
-import { Input, type InputProps } from "../ui/input"
+import { Button } from "@/components/ui/button"
+import { Input, type InputProps } from "@/components/ui/input"
 
 const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {

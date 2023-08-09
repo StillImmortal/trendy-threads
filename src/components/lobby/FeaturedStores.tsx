@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useQuery } from "@tanstack/react-query"
 
 import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -12,8 +13,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { getFeaturedStores } from "@/app/_actions/store"
-
-import { buttonVariants } from "../ui/button"
 
 const FeaturedStores = () => {
   const { data: featuredStores } = useQuery({

@@ -1,7 +1,7 @@
 import { type Metadata } from "next"
 import Link from "next/link"
 import { redirect } from "next/navigation"
-//import dotenv from "dotenv"
+import { env } from "@/env.mjs"
 import { currentUser } from "@clerk/nextjs"
 
 import {
@@ -16,13 +16,14 @@ import { OAuthSignIn, SignInForm } from "@/components/auth"
 import { Container } from "@/components/custom"
 
 export const metadata: Metadata = {
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Sign In",
   description: "Sign in for an account",
 }
 
 const SignInPage = async () => {
-  // const user = await currentUser()
-  // if (user) redirect("/")
+  const user = await currentUser()
+  if (user) redirect("/")
 
   return (
     <Container className="max-w-lg">

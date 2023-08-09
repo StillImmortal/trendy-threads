@@ -1,10 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import { Icons } from "@/constants/icons"
 import { useQuery } from "@tanstack/react-query"
 
 import { formatPrice } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Separator } from "@/components/ui/separator"
 import {
   Sheet,
   SheetContent,
@@ -14,12 +17,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { UpdateCartLineItem } from "@/components/layout"
+import { Icons } from "@/constants/icons"
 import { getCart } from "@/app/_actions/cart"
-
-import { Badge } from "../ui/badge"
-import { Button } from "../ui/button"
-import { ScrollArea } from "../ui/scroll-area"
-import { Separator } from "../ui/separator"
 
 const CartSheet = () => {
   const {
@@ -82,7 +81,7 @@ const CartSheet = () => {
                         <div className="relative h-16 w-16 overflow-hidden rounded">
                           {item?.images?.length ? (
                             <Image
-                              src={item.images[0].url}
+                              src={item.images[0]?.url ?? ""}
                               alt={item.images[0]?.name ?? item.name}
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                               fill
@@ -99,9 +98,7 @@ const CartSheet = () => {
                           )}
                         </div>
                         <div className="flex flex-1 flex-col gap-1 self-start text-sm">
-                          <span className="line-clamp-1">
-                            {item.brand} {item.name}
-                          </span>
+                          <span className="line-clamp-1">{item.name}</span>
                           <span className="line-clamp-1 text-muted-foreground">
                             {formatPrice(item.price)} x {item.quantity} ={" "}
                             {formatPrice(
@@ -112,7 +109,7 @@ const CartSheet = () => {
                           </span>
                           <span className="line-clamp-1 text-xs capitalize text-muted-foreground">
                             {`${item.category} ${
-                              item.subCategory ? `/ ${item.subCategory}` : ""
+                              item.subcategory ? `/ ${item.subcategory}` : ""
                             }`}
                           </span>
                         </div>

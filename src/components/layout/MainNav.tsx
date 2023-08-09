@@ -16,8 +16,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-
-import { ListItem } from "../custom"
+import { ListItem } from "@/components/custom"
 
 interface MainNavProps {
   items?: MainNavItem[]

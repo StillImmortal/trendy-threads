@@ -1,4 +1,5 @@
 import { type Metadata } from "next"
+import { env } from "@/env.mjs"
 
 import {
   Card,
@@ -11,6 +12,7 @@ import { ResetPasswordStep2Form } from "@/components/auth"
 import { Container } from "@/components/custom"
 
 export const metadata: Metadata = {
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Reset Password",
   description: "Enter a new password and verification code",
 }

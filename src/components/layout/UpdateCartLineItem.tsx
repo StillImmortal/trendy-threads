@@ -2,13 +2,12 @@
 
 import { TransitionStartFunction, useTransition } from "react"
 import { Icons } from "@/constants/icons"
-import { useUpdateCart } from "@/hooks"
 import { type CartLineItem } from "@/types"
 
-import { actionError } from "@/lib/validations/actionError"
-
-import { Button } from "../ui/button"
-import { Input } from "../ui/input"
+import { catchError } from "@/lib/utils"
+import { useUpdateCart } from "@/hooks/useMutation"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 interface UpdateCartLineItemProps {
   cartLineItem: CartLineItem
@@ -39,7 +38,7 @@ const UpdateCartLineItem = ({ cartLineItem }: UpdateCartLineItemProps) => {
               try {
                 mutate({ quantity: Number(e.target.value) })
               } catch (error) {
-                actionError(error)
+                catchError(error)
               }
             })
           }}
@@ -96,7 +95,7 @@ const ActionButton = ({
           try {
             mutate({ actionType })
           } catch (error) {
-            actionError(error)
+            catchError(error)
           }
         })
       }}

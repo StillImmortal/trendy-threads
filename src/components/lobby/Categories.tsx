@@ -4,7 +4,7 @@ import Link from "next/link"
 import { productCategories } from "@/config"
 import Balance from "react-wrap-balancer"
 
-import { AspectRatio } from "../ui/aspect-ratio"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 const Categories = () => {
   return (

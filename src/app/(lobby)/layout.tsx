@@ -14,7 +14,7 @@ const LobbyLayout = async ({ children }: LobbyLayoutProps) => {
     <div>
       <Header user={user} />
       <main className="flex-1">{children}</main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }

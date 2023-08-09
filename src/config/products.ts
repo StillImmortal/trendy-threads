@@ -1,10 +1,28 @@
 import { type Product } from "@/db/schema"
 
+export const sortOptions = [
+  { label: "Date: Old to new", value: "createdAt.asc" },
+  {
+    label: "Date: New to old",
+    value: "createdAt.desc",
+  },
+  { label: "Price: Low to high", value: "price.asc" },
+  { label: "Price: High to low", value: "price.desc" },
+  {
+    label: "Alphabetical: A to Z",
+    value: "name.asc",
+  },
+  {
+    label: "Alphabetical: Z to A",
+    value: "name.desc",
+  },
+]
+
 export const productCategories = [
   {
     title: "clothing",
     image: "/images/categories/category-clothing.jpg",
-    subCategories: [
+    subcategories: [
       {
         title: "Shirts & T-Shirts",
         description:
@@ -42,7 +60,7 @@ export const productCategories = [
   {
     title: "shoes",
     image: "/images/categories/category-shoes.jpg",
-    subCategories: [
+    subcategories: [
       {
         title: "Boots",
         description: "Stylish and versatile footwear for any occasion.",
@@ -72,7 +90,7 @@ export const productCategories = [
   {
     title: "accessories",
     image: "/images/categories/category-accessories.jpg",
-    subCategories: [
+    subcategories: [
       {
         title: "Sunglasses",
         description: "Protect your eyes in style with our trendy sunglasses.",
@@ -102,7 +120,7 @@ export const productCategories = [
 ] satisfies {
   title: Product["category"]
   image: string
-  subCategories: {
+  subcategories: {
     title: string
     description?: string
     image?: string
@@ -110,16 +128,27 @@ export const productCategories = [
   }[]
 }[]
 
+export const productTags = [
+  "new",
+  "sale",
+  "bestseller",
+  "featured",
+  "popular",
+  "trending",
+  "limited",
+  "exclusive",
+]
+
 export const getSubcategories = (category?: string) => {
   if (!category) return []
 
-  const subCategories =
+  const subcategories =
     productCategories
       .find((c) => c.title === category)
-      ?.subCategories.map((s) => ({
+      ?.subcategories.map((s) => ({
         label: s.title,
         value: s.slug,
       })) ?? []
 
-  return subCategories
+  return subcategories
 }

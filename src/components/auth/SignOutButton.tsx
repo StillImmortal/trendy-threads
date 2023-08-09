@@ -7,9 +7,8 @@ import { useMounted } from "@/hooks"
 import { SignOutButton as LogOutButton } from "@clerk/nextjs"
 
 import { cn } from "@/lib/utils"
-
-import { Button, buttonVariants } from "../ui/button"
-import { Skeleton } from "../ui/skeleton"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
 
 const SignOutButton = () => {
   const router = useRouter()

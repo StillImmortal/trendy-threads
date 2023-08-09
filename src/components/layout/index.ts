@@ -1,3 +1,4 @@
+import AvatarButton from "./AvatarButton"
 import CartSheet from "./CartSheet"
 import Footer from "./Footer"
 import Header from "./Header"
@@ -20,4 +21,5 @@ export {
   CartSheet,
   UpdateCartLineItem,
   SectionHeader,
+  AvatarButton,
 }

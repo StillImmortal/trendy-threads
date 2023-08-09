@@ -90,6 +90,16 @@
   @apply flex justify-center items-center
 }
 /* END: General styles */
+.green-title {
+  @apply text-green-900 dark:text-green-100
+}
+
+.green-gradient {
+  @apply bg-gradient-to-r border-green-300/60 from-green-500/40 to-background dark:border-green-300/40 dark:from-green-500/20
+}
+/* START: Colors */
+
+/* END: Colors */
 
 @media (max-width: 640px) {
   .container {

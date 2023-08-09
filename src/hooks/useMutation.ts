@@ -1,25 +1,23 @@
-import { Product } from "@/db/schema"
 import { CartLineItem } from "@/types"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 
 import { addToCart, deleteCartItem, updateCartItem } from "@/app/_actions/cart"
 
-export const useAddToCart = (product: Product) => {
+export const useAddToCart = (productId: number) => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationKey: ["product", product.id],
-    mutationFn: async () => {
+    mutationKey: ["product", productId],
+    mutationFn: async ({ quantity }: { quantity: number }) => {
       await addToCart({
-        productId: product.id,
-        quantity: 1,
+        productId: productId,
+        quantity: quantity,
       })
       await queryClient.refetchQueries({
         queryKey: ["cartLineItems"],
         type: "active",
       })
-      toast.success("Added to cart.")
     },
   })
 }

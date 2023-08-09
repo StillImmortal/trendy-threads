@@ -2,11 +2,11 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -16,9 +16,15 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        xs: "380px",
+      },
+      flex: {
+        full: "0 0 100%",
+      },
       boxShadow: {
         header: "inset 0 -1px 0 0 hsl(var(--border))",
-      }, 
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

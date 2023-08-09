@@ -9,7 +9,7 @@ import {
   FeaturedProducts,
   FeaturedStores,
   Hero,
-  RandomSubCategories,
+  RandomSubcategories,
 } from "@/components/lobby"
 
 const page = () => {
@@ -20,7 +20,7 @@ const page = () => {
       <CreateStoreBanner />
       <FeaturedProducts />
       <FeaturedStores />
-      <RandomSubCategories />
+      <RandomSubcategories />
     </Container>
   )
 }

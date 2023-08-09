@@ -9,10 +9,9 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import * as z from "zod"
 
+import { catchClerkError } from "@/lib/utils"
 import { authSchema } from "@/lib/validations/auth"
-import { authError } from "@/lib/validations/authError"
-
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -20,8 +19,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form"
-import { Input } from "../ui/input"
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+
 import PasswordInput from "./PasswordInput"
 
 type Inputs = z.infer<typeof authSchema>
@@ -60,7 +60,7 @@ const SignInForm = () => {
           toast.error("Invalid credentials. Please try again.")
         }
       } catch (error) {
-        authError(error)
+        catchClerkError(error)
       }
     })
   }

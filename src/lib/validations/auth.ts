@@ -35,3 +35,12 @@ export const resetPasswordSchema = z
     message: "Passwords don't match",
     path: ["confirmPassword"],
   })
+
+export const userPrivateMetadataSchema = z.object({
+  role: z.enum(["user", "admin"]),
+
+  stripePriceId: z.string().optional().nullable(),
+  stripeSubscriptionId: z.string().optional().nullable(),
+  stripeCustomerId: z.string().optional().nullable(),
+  stripeCurrentPeriodEnd: z.string().optional().nullable(),
+})

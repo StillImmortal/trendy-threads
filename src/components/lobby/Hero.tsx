@@ -3,8 +3,7 @@ import Link from "next/link"
 import Balance from "react-wrap-balancer"
 
 import { cn } from "@/lib/utils"
-
-import { buttonVariants } from "../ui/button"
+import { buttonVariants } from "@/components/ui/button"
 
 const Hero = () => {
   return (

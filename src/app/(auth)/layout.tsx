@@ -20,6 +20,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
           fill
           className="absolute inset-0 object-cover"
           sizes="(max-width: 768px) 100vw, 75vw"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background to-background/60 md:to-background/20 dark:md:to-background/40">
           <Link

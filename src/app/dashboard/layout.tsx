@@ -4,7 +4,7 @@ import { dashboardConfig } from "@/config"
 import { currentUser } from "@clerk/nextjs"
 
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Header, SidebarNav } from "@/components/layout"
+import { Footer, Header, SidebarNav } from "@/components/layout"
 
 interface DashboardLayoutProps {
   children: ReactNode
@@ -12,7 +12,6 @@ interface DashboardLayoutProps {
 
 const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
   const user = await currentUser()
-
   if (!user) redirect("/sign-in")
 
   return (
@@ -26,6 +25,7 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
         </aside>
         <main className="flex w-full flex-col overflow-hidden">{children}</main>
       </div>
+      <Footer />
     </div>
   )
 }

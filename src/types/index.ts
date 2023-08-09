@@ -1,14 +1,13 @@
-import { type Icons } from "@/constants/icons"
+import { ComponentType } from "react"
 import { type Product } from "@/db/schema"
-import { type userPrivateMetadataSchema } from "@/lib/validations/auth"
-import type { cartItemSchema, checkoutItemSchema } from "@/lib/validations/cart"
-import React from "react"
 import { type FileWithPath } from "react-dropzone"
 import * as z from "zod"
 
+import { type userPrivateMetadataSchema } from "@/lib/validations/auth"
+import type { cartItemSchema, checkoutItemSchema } from "@/lib/validations/cart"
+import { type Icons } from "@/constants/icons"
+
 export interface NavItem {
-  title: string
-  href?: string
   title: string
   href?: string
   disabled?: boolean
@@ -44,7 +43,7 @@ export type UserRole = z.infer<typeof userPrivateMetadataSchema.shape.role>
 export interface Option {
   label: string
   value: string
-  icon?: React.ComponentType<{ className?: string }>
+  icon?: ComponentType<{ className?: string }>
 }
 
 export type FileWithPreview = FileWithPath & {
@@ -64,7 +63,7 @@ export interface DataTableSearchableColumn<TData> {
 
 export interface DataTableFilterableColumn<TData>
   extends DataTableSearchableColumn<TData> {
-  option: Option[]
+  options: Option[]
 }
 
 export type CartItem = z.infer<typeof cartItemSchema>
@@ -74,8 +73,7 @@ export type CheckoutItem = z.infer<typeof checkoutItemSchema>
 export interface CartLineItem
   extends Pick<
     Product,
-    "id" | "brand" | "name" | "images" | "category" | "subCategory" | "price"
-    "id" | "brand" | "name" | "images" | "category" | "subCategory" | "price"
+    "id" | "name" | "images" | "category" | "subcategory" | "price"
   > {
   quantity?: number
   storeName: string | null
