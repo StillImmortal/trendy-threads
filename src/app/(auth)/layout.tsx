@@ -1,10 +1,10 @@
 import { ReactNode } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Icons } from "@/constants/icons"
 
 import { siteConfig } from "@/config/site"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Icons } from "@/constants/icons"
 
 interface AuthLayoutProps {
   children: ReactNode
@@ -15,7 +15,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
     <div className="grid min-h-screen grid-cols-1 overflow-hidden md:grid-cols-3 lg:grid-cols-2">
       <AspectRatio ratio={16 / 9}>
         <Image
-          src={"/images/bg-1.jpg"}
+          src={"/images/auth-bg.jpg"}
           alt="Clothing"
           fill
           className="absolute inset-0 object-cover"
