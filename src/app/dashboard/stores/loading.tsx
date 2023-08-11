@@ -1,11 +1,11 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
-import { PageHeader } from "@/components/custom"
+import { Container, PageHeader } from "@/components/custom"
 
 export default function StoresLoading() {
   return (
-    <>
+    <Container variant="sidebar">
       <PageHeader title="Stores" description="Manage your stores" size="sm" />
       <Card className="flex space-x-4 px-4 py-3">
         <Skeleton className="mt-2 h-4 w-4 rounded" />
@@ -31,6 +31,6 @@ export default function StoresLoading() {
           </Card>
         ))}
       </div>
-    </>
+    </Container>
   )
 }

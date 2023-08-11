@@ -15,7 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { PageHeader } from "@/components/custom"
+import { Container, PageHeader } from "@/components/custom"
 import { Icons } from "@/constants/icons"
 import { getStoresWithProductCount, getUserStores } from "@/app/_actions/store"
 import {
@@ -64,7 +64,7 @@ const UserStores = ({ userId }: UserStoresProps) => {
     return <StoresLoading />
 
   return (
-    <>
+    <Container variant="sidebar">
       <PageHeader title="Stores" description="Manage your stores." size="sm" />
       <Alert>
         <Icons.terminal className="h-4 w-4" aria-hidden="true" />
@@ -155,7 +155,7 @@ const UserStores = ({ userId }: UserStoresProps) => {
           </Card>
         )}
       </div>
-    </>
+    </Container>
   )
 }
 

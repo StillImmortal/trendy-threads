@@ -17,11 +17,7 @@ const StoresPage = async () => {
 
   if (!user) redirect("/sign-in")
 
-  return (
-    <Container variant="sidebar">
-      <UserStores userId={user.id} />
-    </Container>
-  )
+  return <UserStores userId={user.id} />
 }
 
 export default StoresPage
